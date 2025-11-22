@@ -9,6 +9,7 @@ import { ProtectedRoute, AuthRoute } from "./RouteGuards";
 import { routesList } from "@/constants/routeList";
 import BaseLayout from "@/layouts/BaseLayout";
 import BaseLoader from "@/components/loaders/BaseLoader";
+import NotFoundPage from "@/components/common/NotFoundPage";
 
 // auth
 const LoginPage = lazy(() => import("../app/dashboard/Login/Login"));
@@ -77,7 +78,7 @@ export default function Routes() {
         </Route>
 
         {/* Optional: catch-all route (404) */}
-        {/* <Route path="*" element={<NotFoundPage />} /> */}
+        <Route path="*" element={<NotFoundPage />} />
       </>
     )
   );
