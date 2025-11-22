@@ -14,7 +14,7 @@ const GlobeLoader = () => {
   if (!visible) return null;
 
   return (
-    <div className="bg-black/90 flex justify-center items-center fixed top-0 left-0 w-dvw h-dvh z-50">
+    <div className="bg-black flex justify-center items-center fixed top-0 left-0 w-dvw h-dvh z-50">
       <div className="earth">
         <div className="earth-loader">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
@@ -46,7 +46,7 @@ const GlobeLoader = () => {
             ></path>
           </svg>
         </div>
-        <p className="mt-3">Initializing...</p>
+        <p className="mt-3 font-raleway">Initializing...</p>
       </div>
     </div>
   );
