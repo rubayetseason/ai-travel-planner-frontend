@@ -1,9 +1,15 @@
-import { Button } from "@/components/ui/button";
+import { Toaster } from "sonner";
+import Routes from "./routes/Routes";
 
 function App() {
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center">
-      <Button>Click me</Button>
+    <div>
+      <Routes />
+      <Toaster
+        position="top-center"
+        toastOptions={{ duration: 3000 }}
+        richColors
+      />
     </div>
   );
 }
