@@ -147,7 +147,7 @@ const Searchbox = () => {
                               variant="outline"
                               className={cn(
                                 "flex items-center gap-2 border px-4 py-5 rounded-md w-full h-[43px] justify-start",
-                                !field.value && "text-muted-foreground"
+                                !field.value && "text-muted-foreground",
                               )}
                             >
                               <CalendarIcon className="h-5 w-5 text-[#00000080]" />

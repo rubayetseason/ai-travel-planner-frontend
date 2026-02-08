@@ -1,12 +1,14 @@
-import GlobeLoader from "@/components/loaders/GlobeLoader";
+// import GlobeLoader from "@/components/loaders/GlobeLoader";
 import CarouselPC from "./_components/CarouselPC";
 import CarouselMobile from "./_components/CarouselMobile";
 import Searchbox from "./_components/Searchbox";
+import { Button } from "@/components/ui/button";
+import { User } from "lucide-react";
 
 const Home = () => {
   return (
     <div>
-      <GlobeLoader></GlobeLoader>
+      {/* <GlobeLoader></GlobeLoader> */}
       <div className="relative">
         <div className="hidden md:block">
           <CarouselPC></CarouselPC>
@@ -16,6 +18,11 @@ const Home = () => {
         </div>
         <div className="w-full absolute top-[50%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <Searchbox></Searchbox>
+        </div>
+        <div className="bg-white/50 absolute bottom-4 right-4 rounded-[30px]">
+          <Button variant="ghost">
+            <User /> Admin
+          </Button>
         </div>
       </div>
     </div>
