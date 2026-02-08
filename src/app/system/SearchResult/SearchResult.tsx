@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import AiLoader from "@/components/loaders/AiLoader";
 import { AuroraBackground } from "@/components/ui/aurora-background";
+import EditResult from "./_components/EditResult";
 
 const SearchResult = () => {
   return (
@@ -27,9 +28,7 @@ const SearchResult = () => {
       </AuroraBackground>
       <Results></Results>
       <div className="pb-32 w-full max-w-screen-2xl mx-auto text-black text-xl font-raleway flex justify-between items-center gap-4">
-        <Button size="lg" variant="outline">
-          Edit Options
-        </Button>
+       <EditResult></EditResult>
         <Link to={"/checkout"}>
           <Button size="lg" variant="outline" className="cursor-pointer">
             Proceeed to Checkout
