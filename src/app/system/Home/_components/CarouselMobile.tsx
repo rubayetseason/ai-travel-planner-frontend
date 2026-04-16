@@ -27,29 +27,28 @@ const carouselSlides = [
 
 const CarouselMobile = () => {
   return (
-    <div>
-      <Carousel
-        opts={{ loop: true }}
-        plugins={[Autoplay({ delay: 15 * 1000 }), Fade()]}
-      >
-        <CarouselContent>
-          {carouselSlides.map((slide, index) => (
-            <CarouselItem key={index} className="relative">
-              <img
-                src={slide.image}
-                alt={slide.alt}
-                className="w-dvw h-dvh object-cover brightness-[.6]"
-              />
-              <div className="px-12 w-full absolute top-24 left-0 flex flex-col gap-5 z-10">
-                <h1 className="text-3xl text-center text-white font-comforter">
-                  {slide.title}
-                </h1>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-      </Carousel>
-    </div>
+    <Carousel
+      opts={{ loop: true }}
+      plugins={[Autoplay({ delay: 15 * 1000 }), Fade()]}
+    >
+      <CarouselContent>
+        {carouselSlides.map((slide, index) => (
+          <CarouselItem key={index} className="relative">
+            <img
+              src={slide.image}
+              alt={slide.alt}
+              className="h-screen w-full object-cover brightness-[.58]"
+            />
+
+            <div className="absolute inset-x-0 top-20 z-10 px-5">
+              <h1 className="text-4xl text-center text-white font-comforter">
+                {slide.title}
+              </h1>
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+    </Carousel>
   );
 };
 

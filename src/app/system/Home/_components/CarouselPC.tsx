@@ -11,7 +11,7 @@ const carouselSlides = [
   {
     title: "Welcome to Bangladesh",
     description:
-      "Bangladesh offers stunning natural diversity—lush green hills, serene rivers, mangrove forests, and sandy beaches—alongside six vibrant seasons, making it a captivating destination for nature lovers and cultural tourists.",
+      "Bangladesh offers stunning natural diversity - lush green hills, serene rivers, mangrove forests, and sandy beaches - alongside six vibrant seasons, making it a captivating destination for nature lovers and cultural tourists.",
     image: AiDventureAssets.images.pc.pcImage1,
     alt: "Scenic landscape of Bangladesh",
   },
@@ -40,32 +40,33 @@ const carouselSlides = [
 
 const CarouselPC = () => {
   return (
-    <div>
-      <Carousel
-        opts={{ loop: true }}
-        plugins={[Autoplay({ delay: 15 * 1000 }), Fade()]}
-      >
-        <CarouselContent>
-          {carouselSlides.map((slide, index) => (
-            <CarouselItem key={index} className="relative">
-              <img
-                src={slide.image}
-                alt={slide.alt}
-                className="w-dvw h-dvh object-cover brightness-[.6]"
-              />
-              <div className="px-12 w-full absolute top-20 left-0 flex justify-between items-center z-10">
-                <h1 className="text-8xl text-white font-comforter">
+    <Carousel
+      opts={{ loop: true }}
+      plugins={[Autoplay({ delay: 15 * 1000 }), Fade()]}
+    >
+      <CarouselContent>
+        {carouselSlides.map((slide, index) => (
+          <CarouselItem key={index} className="relative">
+            <img
+              src={slide.image}
+              alt={slide.alt}
+              className="h-screen w-full object-cover brightness-[.58]"
+            />
+
+            <div className="pointer-events-none absolute inset-0 z-10 flex items-start">
+              <div className="mx-auto mt-16 flex w-full max-w-7xl flex-col gap-4 px-4 sm:px-8 lg:mt-20 lg:flex-row lg:items-start lg:justify-between lg:px-12">
+                <h1 className="max-w-2xl text-4xl text-white font-comforter sm:text-5xl lg:text-7xl xl:text-8xl">
                   {slide.title}
                 </h1>
-                <h1 className="w-96 text-base text-white font-raleway">
+                <p className="max-w-md text-sm text-white/90 font-raleway lg:text-base">
                   {slide.description}
-                </h1>
+                </p>
               </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-      </Carousel>
-    </div>
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+    </Carousel>
   );
 };
 

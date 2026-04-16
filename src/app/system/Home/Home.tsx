@@ -4,25 +4,30 @@ import CarouselMobile from "./_components/CarouselMobile";
 import Searchbox from "./_components/Searchbox";
 import { Button } from "@/components/ui/button";
 import { User } from "lucide-react";
+import { Link } from "react-router-dom";
+import { routesList } from "@/constants/routeList";
 
 const Home = () => {
   return (
-    <div>
-      {/* <GlobeLoader></GlobeLoader> */}
-      <div className="relative">
+    <div className="min-h-screen overflow-x-hidden bg-black">
+      <div className="relative min-h-screen">
         <div className="hidden md:block">
           <CarouselPC></CarouselPC>
         </div>
         <div className="md:hidden">
           <CarouselMobile></CarouselMobile>
         </div>
-        <div className="w-full absolute top-[50%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+
+        <div className="absolute inset-0 z-10 flex items-center justify-center px-3 sm:px-4">
           <Searchbox></Searchbox>
         </div>
-        <div className="bg-white/50 absolute bottom-4 right-4 rounded-[30px]">
-          <Button variant="ghost">
-            <User /> Admin
-          </Button>
+
+        <div className="bg-white/65 absolute top-4 right-4 z-20 rounded-[30px]">
+          <Link to={routesList.dashboard}>
+            <Button variant="ghost">
+              <User /> Admin
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

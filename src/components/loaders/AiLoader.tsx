@@ -42,8 +42,8 @@ const AiLoader = () => {
   if (!visible) return null;
 
   return (
-    <div className="text-white font-raleway bg-black flex justify-center items-center fixed top-0 left-0 w-dvw h-dvh z-50">
-      <div className="flex justify-center items-center gap-11">
+    <div className="fixed top-0 left-0 z-50 flex h-dvh w-dvw items-center justify-center bg-black px-4 text-white font-raleway">
+      <div className="flex max-w-xl flex-col items-center gap-6 text-center sm:flex-row sm:gap-8 sm:text-left">
         <div className="spinner">
           <div></div>
           <div></div>
@@ -55,7 +55,7 @@ const AiLoader = () => {
 
         <h1
           key={index}
-          className="text-3xl flex items-center gap-2 font-semibold text-transparent bg-clip-text bg-linear-to-r from-gray-400 via-gray-200 to-gray-500 animate-fade-in-out"
+          className="max-w-sm text-base font-semibold text-transparent bg-clip-text bg-linear-to-r from-gray-400 via-gray-200 to-gray-500 animate-fade-in-out sm:text-xl lg:text-3xl"
         >
           {messages[index]}
         </h1>

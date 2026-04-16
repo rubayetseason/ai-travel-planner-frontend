@@ -1,83 +1,145 @@
 import {
   createBrowserRouter,
   createRoutesFromElements,
+  Navigate,
   Route,
   RouterProvider,
 } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import { ProtectedRoute, AuthRoute } from "./RouteGuards";
 import { routesList } from "@/constants/routeList";
 import BaseLayout from "@/layouts/BaseLayout";
 import BaseLoader from "@/components/loaders/BaseLoader";
 import NotFoundPage from "@/components/common/NotFoundPage";
 
-// auth
+// auth pages
 const LoginPage = lazy(() => import("../app/dashboard/Login/Login"));
+const RegisterPage = lazy(() => import("../app/dashboard/Register/Register"));
 
-// public pages
+// system pages
 const HomePage = lazy(() => import("../app/system/Home/Home"));
 const SearchResultPage = lazy(
   () => import("../app/system/SearchResult/SearchResult")
 );
 
-// dashboard (protected)
-const DashboardPage = lazy(
-  () => import("../app/dashboard/Dashboard/DashboardHome")
+// admin dashboard pages
+const DashboardLayout = lazy(() => import("../app/dashboard/Admin/DashboardLayout"));
+const CityPage = lazy(() => import("../app/dashboard/Admin/CityPage"));
+const TravelConnectorPage = lazy(
+  () => import("../app/dashboard/Admin/TravelConnectorPage")
+);
+const HotelPage = lazy(() => import("../app/dashboard/Admin/HotelPage"));
+const AttractionPage = lazy(
+  () => import("../app/dashboard/Admin/AttractionPage")
+);
+const AttractionConnectorPage = lazy(
+  () => import("../app/dashboard/Admin/AttractionConnectorPage")
 );
 
 export default function Routes() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-        {/* ---------- Public routes (always accessible) ---------- */}
-        <Route
-          path="/"
-          element={
-            <Suspense fallback={<BaseLoader />}>
-              <HomePage />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/search-result"
-          element={
-            <Suspense fallback={<BaseLoader />}>
-              <SearchResultPage />
-            </Suspense>
-          }
-        />
-
-        {/* ---------- Auth route (only redirect to dashboard if already logged in) ---------- */}
+        {/* ---------- Auth routes ---------- */}
         <Route
           path={routesList.auth}
           element={
-            <AuthRoute>
-              <Suspense fallback={<BaseLoader />}>
-                <LoginPage />
-              </Suspense>
-            </AuthRoute>
+            <Suspense fallback={<BaseLoader />}>
+              <LoginPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/login"
+          element={<Navigate to={routesList.auth} replace />}
+        />
+        <Route
+          path={routesList.register}
+          element={
+            <Suspense fallback={<BaseLoader />}>
+              <RegisterPage />
+            </Suspense>
           }
         />
 
-        {/* ---------- Protected routes (only accessible when logged in) ---------- */}
-        <Route element={<ProtectedRoute />}>
-          {/* Put protected pages under whatever path you prefer (here: /dashboard) */}
-          <Route path={routesList.dashboard} element={<BaseLayout />}>
-            <Route
-              index
-              element={
-                <Suspense fallback={<BaseLoader />}>
-                  <DashboardPage />
-                </Suspense>
-              }
-            />
-            {/* add other nested protected routes here, e.g.
-                <Route path="orders" element={<OrdersPage />} />
-            */}
-          </Route>
+        {/* ---------- System routes ---------- */}
+        <Route
+          path={routesList.system}
+          element={<BaseLayout />}
+        >
+          <Route
+            index
+            element={
+              <Suspense fallback={<BaseLoader />}>
+                <HomePage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="search-result"
+            element={
+              <Suspense fallback={<BaseLoader />}>
+                <SearchResultPage />
+              </Suspense>
+            }
+          />
         </Route>
 
-        {/* Optional: catch-all route (404) */}
+        {/* ---------- Admin routes ---------- */}
+        <Route
+          path={routesList.dashboard}
+          element={
+            <Suspense fallback={<BaseLoader />}>
+              <DashboardLayout />
+            </Suspense>
+          }
+        >
+          <Route
+            index
+            element={<Navigate to={routesList.dashboardCity} replace />}
+          />
+          <Route
+            path="city"
+            element={
+              <Suspense fallback={<BaseLoader />}>
+                <CityPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="travel-connector"
+            element={
+              <Suspense fallback={<BaseLoader />}>
+                <TravelConnectorPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="hotel"
+            element={
+              <Suspense fallback={<BaseLoader />}>
+                <HotelPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="attraction"
+            element={
+              <Suspense fallback={<BaseLoader />}>
+                <AttractionPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="attraction-connector"
+            element={
+              <Suspense fallback={<BaseLoader />}>
+                <AttractionConnectorPage />
+              </Suspense>
+            }
+          />
+        </Route>
+
+        {/* ---------- Catch-all route ---------- */}
         <Route path="*" element={<NotFoundPage />} />
       </>
     )
